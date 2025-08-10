@@ -26,7 +26,6 @@ export default function App() {
 
   const clinics = [
     { name: "Minerva Care Clinic", area: "Kopar Khairane" },
-    { name: "Lokmanya Tilak Municipal Medical College & Sion Hospital", area: "Mumbai" },
     { name: "Punjab Kesari Charitable Trust Hospital", area: "Vashi" },
     { name: "Sai Snehadeep Hospital", area: "Vashi / Kopar Khairane" },
     { name: "Baba Multi-Speciality Hospital", area: "Wadala" },
