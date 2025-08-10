@@ -28,7 +28,7 @@ export default function App() {
   { name: "Baba Multi-Speciality Hospital", area: "Wadala" },
   { name: "New Era Hospital", area: "Vashi" },
    { name: "New Era Hospital", area: "Vashi" },
-  { name: "White Lotus International Hospital", area: "Kalamboli },
+  { name: "White Lotus International Hospital", area: "Kalamboli" },
   { name: "Nirmal Hospital", area: "Koparkhairane" },
   { name: "Credence Care Hospital", area: "Ghansoli" },
 ];
