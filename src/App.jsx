@@ -439,10 +439,11 @@ function AppointmentsSection({ phone, email, clinics }) {
           </ul>
         </div>
       </div>
-    </Section>
-    <div className="fixed z-50 right-3 bottom-20 sm:right-6 sm:bottom-6">
+       <div className="fixed z-50 right-3 bottom-20 sm:right-6 sm:bottom-6">
       <AIChatWidget />
     </div>
+    </Section>
+   
   );
 }
 
