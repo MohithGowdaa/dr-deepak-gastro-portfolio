@@ -440,15 +440,19 @@ function AppointmentsSection({ phone, email, clinics }) {
         </div>
       </div>
     </Section>
+    <div className="fixed z-50 right-3 bottom-20 sm:right-6 sm:bottom-6">
+      <AIChatWidget />
+    </div>
   );
 }
 
 function Field({ label, children }) {
   return (
-    <AIChatWidget />
+    
     <label className="block text-sm">
       <span className="text-neutral-600 dark:text-neutral-300">{label}</span>
       <div className="mt-1">{children}</div>
     </label>
+     
   );
 }
