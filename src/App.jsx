@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AIChatWidget from "./components/AIChatWidget";
 import {
   Phone, Mail, MapPin, GraduationCap, Award, BookOpen, Stethoscope,
-  Building2, CalendarDays, Languages, Home, ShieldCheck, User, Sun, Moon, Send
+  Building2, CalendarDays, Sun, Moon, Send
 } from "lucide-react";
 import drImg from "./assets/dr-deepak.png";
 
@@ -20,11 +20,12 @@ export default function App() {
   const displayPhone = "+91 91083 36267";
   const email = "deepakskarthika@gmail.com";
 
+  // === UPDATED HOSPITAL LIST ===
   const clinics = [
-    { name: "Minerva Care Clinic", area: "Kopar Khairane" },
-    { name: "Punjab Kesari Charitable Trust Hospital", area: "Vashi" },
-    { name: "Sai Snehadeep Hospital", area: "Vashi / Kopar Khairane" },
-    { name: "Baba Multi-Speciality Hospital", area: "Wadala" },
+    { name: "New Era Hospital", area: "Vashi" },
+    { name: "Tej Vedant Hospital", area: "Koparkhairane", onCall: true },
+    { name: "Nirmal Hospital", area: "Koparkhairane", onCall: true },
+    { name: "Credence Care Hospital", area: "Ghansoli" },
   ];
 
   const personal = { fullName: "Dr. Deepak Sasikumar", specialties: ["Medical Gastroenterologist"] };
@@ -136,31 +137,48 @@ export default function App() {
               <div className="mt-5 flex flex-wrap gap-3">
                 <a href={`tel:${phone}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm"><Phone className="w-4 h-4" /> Call {displayPhone}</a>
                 <a href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72.96.99-3.62-.23-.37A9.93 9.93 0 0 1 2.07 12c0-5.5 4.48-10 9.99-10s9.99 4.5 9.99 10c0 5.5-4.48 10-9.99 10Zm5.47-7.48c-.3-.15-1.78-.87-2.06-.97-.28-.1-.49-.15-.7.15-.21.3-.8.97-.98 1.17-.18.2-.36.22-.66.07-.3-.15-1.25-.45-2.38-1.45-.88-.77-1.48-1.72-1.65-2.01-.17-.3-.02-.46 .13-.6.14-.14 .3-.36 .45-.54.15-.18 .2-.3 .3-.5.1-.2 .05-.37 -.03-.52-.08-.15 -.7-1.68 -.95-2.29 -.25-.6 -.5-.52 -.7-.53 l-.6-.01 c-.2 0 -.52 .07 -.79 .37 -.27 .3 -1.04 1.02 -1.04 2.5 s 1.07 2.9 1.22 3.1 c .15 .2 2.1 3.2 5.06 4.49 .71 .31 1.26 .49 1.69 .63 .71 .23 1.35 .2 1.86 .12 .57 -.08 1.78 -.73 2.03 -1.44 .25 -.71 .25 -1.32 .17 -1.45 -.08 -.13 -.27 -.2 -.57 -.35 Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72 .96 .99-3.62 -.23 -.37 A9.93 9.93 0 0 1 2.07 12 c0 -5.5 4.48 -10 9.99 -10 s 9.99 4.5 9.99 10 c0 5.5 -4.48 10 -9.99 10 Zm5.47 -7.48 c -.3 -.15 -1.78 -.87 -2.06 -.97 -.28 -.1 -.49 -.15 -.7 .15 -.21 .3 -.8 .97 -.98 1.17 -.18 .2 -.36 .22 -.66 .07 -.3 -.15 -1.25 -.45 -2.38 -1.45 -.88 -.77 -1.48 -1.72 -1.65 -2.01 -.17 -.3 -.02 -.46 .13 -.6 .14 -.14 .3 -.36 .45 -.54 .15 -.18 .2 -.3 .3 -.5 .1 -.2 .05 -.37 -.03 -.52 -.08 -.15 -.7 -1.68 -.95 -2.29 -.25 -.6 -.5 -.52 -.7 -.53 l -.6 -.01 c -.2 0 -.52 .07 -.79 .37 -.27 .3 -1.04 1.02 -1.04 2.5 s 1.07 2.9 1.22 3.1 c .15 .2 2.1 3.2 5.06 4.49 .71 .31 1.26 .49 1.69 .63 .71 .23 1.35 .2 1.86 .12 .57 -.08 1.78 -.73 2.03 -1.44 .25 -.71 .25 -1.32 .17 -1.45 -.08 -.13 -.27 -.2 -.57 -.35 Z"/></svg>
                   WhatsApp
                 </a>
                 <a href={`mailto:${email}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm"><Mail className="w-4 h-4" /> Email</a>
               </div>
+
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
                 <InfoCard title="Attached To" icon={<Building2 className="w-5 h-5" />}>
                   <ul className="text-sm space-y-1">
                     {clinics.map(c => (
                       <li key={c.name} className="flex items-start gap-2">
                         <MapPin className="w-4 h-4 mt-0.5" />
-                        <a className="underline decoration-dotted hover:opacity-80" href={mapsLink(c.name, c.area)} target="_blank" rel="noreferrer">
+                        <a
+                          className="underline decoration-dotted hover:opacity-80"
+                          href={mapsLink(c.name, c.area)}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           {c.name} — {c.area}
                         </a>
+                        {c.onCall && (
+                          <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full border border-neutral-300 dark:border-neutral-700">
+                            On-call
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>
                 </InfoCard>
+
                 <InfoCard title="Clinical Interests" icon={<Stethoscope className="w-5 h-5" />}>
                   <div className="flex flex-wrap gap-2">
-                    {interests.map(i => (<span key={i} className="px-3 py-1.5 rounded-full border text-sm border-neutral-300 dark:border-neutral-700">{i}</span>))}
+                    {interests.map(i => (
+                      <span key={i} className="px-3 py-1.5 rounded-full border text-sm border-neutral-300 dark:border-neutral-700">
+                        {i}
+                      </span>
+                    ))}
                   </div>
                 </InfoCard>
               </div>
             </div>
+
             <div className="justify-self-center">
               <div className="relative w-40 h-40 sm:w-56 sm:h-56">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-200 to-emerald-200 dark:from-sky-900 dark:to-emerald-900 blur-xl" />
@@ -179,8 +197,8 @@ export default function App() {
               <div className="font-semibold">{e.degree}</div>
               <div className="text-sm text-neutral-600 dark:text-neutral-400">{e.place}</div>
               <div className="text-xs text-neutral-500 mt-1 flex items-center gap-3">
-                <span className="inline-flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5"/> {e.year}</span>
-                {e.score && <span className="inline-flex items-center gap-1"><Award className="w-3.5 h-3.5"/> {e.score}</span>}
+                <span className="inline-flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {e.year}</span>
+                {e.score && <span className="inline-flex items-center gap-1"><Award className="w-3.5 h-3.5" /> {e.score}</span>}
               </div>
             </div>
           ))}
@@ -190,14 +208,22 @@ export default function App() {
       {/* Achievements */}
       <Section title="Achievements" icon={<Award className="w-5 h-5" />}>
         <ul className="grid sm:grid-cols-2 gap-2 text-sm">
-          {achievements.map((a) => (<li key={a} className="p-3 rounded-xl bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800">{a}</li>))}
+          {achievements.map((a) => (
+            <li key={a} className="p-3 rounded-xl bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800">
+              {a}
+            </li>
+          ))}
         </ul>
       </Section>
 
       {/* Experience */}
       <Section id="experience" title="Experience" icon={<Building2 className="w-5 h-5" />}>
         <ul className="grid sm:grid-cols-2 gap-2 text-sm">
-          {experience.map((exp) => (<li key={exp} className="p-3 rounded-xl bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800">{exp}</li>))}
+          {experience.map((exp) => (
+            <li key={exp} className="p-3 rounded-xl bg-white/70 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800">
+              {exp}
+            </li>
+          ))}
         </ul>
       </Section>
 
@@ -219,13 +245,24 @@ export default function App() {
             <a href={`tel:${phone}`} className="block text-blue-600 dark:text-emerald-400 font-medium">{displayPhone}</a>
             <a href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer" className="block text-sm mt-1 underline">Open WhatsApp</a>
           </InfoCard>
+
           <InfoCard title="Email" icon={<Mail className="w-5 h-5" />}>
             <a href={`mailto:${email}`} className="block text-blue-600 dark:text-emerald-400 font-medium">{email}</a>
           </InfoCard>
+
           <InfoCard title="Maps (quick open)" icon={<MapPin className="w-5 h-5" />}>
             <ul className="text-sm space-y-1">
               {clinics.map(c => (
-                <li key={c.name}><a className="underline decoration-dotted" href={mapsLink(c.name, c.area)} target="_blank" rel="noreferrer">{c.name}</a></li>
+                <li key={c.name} className="flex items-center">
+                  <a className="underline decoration-dotted" href={mapsLink(c.name, c.area)} target="_blank" rel="noreferrer">
+                    {c.name} — {c.area}
+                  </a>
+                  {c.onCall && (
+                    <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full border border-neutral-300 dark:border-neutral-700">
+                      On-call
+                    </span>
+                  )}
+                </li>
               ))}
             </ul>
           </InfoCard>
@@ -238,19 +275,25 @@ export default function App() {
         <div>© {new Date().getFullYear()} {personal.fullName}. All rights reserved.</div>
       </footer>
 
+      {/* Mobile bottom actions */}
       <div className="fixed inset-x-0 bottom-0 sm:hidden bg-white/95 dark:bg-neutral-900/95 border-t border-neutral-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 py-2 grid grid-cols-3 gap-2">
           <a href={`tel:${phone}`} className="flex items-center justify-center gap-2 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700">
-            <Phone className="w-4 h-4"/> Call
+            <Phone className="w-4 h-4" /> Call
           </a>
           <a href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72 .96 .99-3.62 -.23 -.37 A9.93 9.93 0 0 1 2.07 12 c0 -5.5 4.48 -10 9.99 -10 s 9.99 4.5 9.99 10 c0 5.5 -4.48 10 -9.99 10 Zm5.47 -7.48 c -.3 -.15 -1.78 -.87 -2.06 -.97 -.28 -.1 -.49 -.15 -.7 .15 -.21 .3 -.8 .97 -.98 1.17 -.18 .2 -.36 .22 -.66 .07 -.3 -.15 -1.25 -.45 -2.38 -1.45 -.88 -.77 -1.48 -1.72 -1.65 -2.01 -.17 -.3 -.02 -.46 .13 -.6 .14 -.14 .3 -.36 .45 -.54 .15 -.18 .2 -.3 .3 -.5 .1 -.2 .05 -.37 -.03 -.52 -.08 -.15 -.7 -1.68 -.95 -2.29 -.25 -.6 -.5 -.52 -.7 -.53 l -.6 -.01 c -.2 0 -.52 .07 -.79 .37 -.27 .3 -1.04 1.02 -1.04 2.5 s 1.07 2.9 1.22 3.1 c .15 .2 2.1 3.2 5.06 4.49 .71 .31 1.26 .49 1.69 .63 .71 .23 1.35 .2 1.86 .12 .57 -.08 1.78 -.73 2.03 -1.44 .25 -.71 .25 -1.32 .17 -1.45 -.08 -.13 -.27 -.2 -.57 -.35 Z"/></svg>
             WhatsApp
           </a>
           <a href={`mailto:${email}`} className="flex items-center justify-center gap-2 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700">
-            <Mail className="w-4 h-4"/> Email
+            <Mail className="w-4 h-4" /> Email
           </a>
         </div>
+      </div>
+
+      {/* Floating AI chatbot (on every page) */}
+      <div className="fixed z-50 right-3 bottom-20 sm:right-6 sm:bottom-6">
+        <AIChatWidget />
       </div>
     </div>
   );
@@ -378,14 +421,25 @@ function AppointmentsSection({ phone, email, clinics }) {
           <Field label="Full name">
             <input value={form.name} onChange={e=>setForm(f=>({...f, name:e.target.value}))} placeholder="Your name" className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
           </Field>
+
           <Field label="Phone number">
             <input value={form.phone} onChange={e=>setForm(f=>({...f, phone:e.target.value}))} placeholder="+91 ..." className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
           </Field>
+
           <Field label="Preferred clinic">
-            <select value={form.clinic} onChange={e=>setForm(f=>({...f, clinic:e.target.value}))} className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none">
-              {clinics.map(c => (<option key={c.name} value={c.name}>{c.name} — {c.area}</option>))}
+            <select
+              value={form.clinic}
+              onChange={e=>setForm(f=>({...f, clinic:e.target.value}))}
+              className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none"
+            >
+              {clinics.map(c => (
+                <option key={c.name} value={c.name}>
+                  {c.name} — {c.area}{c.onCall ? " (On-call)" : ""}
+                </option>
+              ))}
             </select>
           </Field>
+
           <div className="grid grid-cols-2 gap-3">
             <Field label="Date (optional)">
               <input type="date" value={form.date} onChange={e=>setForm(f=>({...f, date:e.target.value}))} className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
@@ -394,6 +448,7 @@ function AppointmentsSection({ phone, email, clinics }) {
               <input type="time" value={form.time} onChange={e=>setForm(f=>({...f, time:e.target.value}))} className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
             </Field>
           </div>
+
           <Field label="Concern (optional)">
             <textarea value={form.concern} onChange={e=>setForm(f=>({...f, concern:e.target.value}))} rows={3} placeholder="e.g., abdominal pain, acidity..." className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
           </Field>
@@ -439,21 +494,15 @@ function AppointmentsSection({ phone, email, clinics }) {
           </ul>
         </div>
       </div>
-       <div className="fixed z-50 right-3 bottom-20 sm:right-6 sm:bottom-6">
-      <AIChatWidget />
-    </div>
     </Section>
-   
   );
 }
 
 function Field({ label, children }) {
   return (
-    
     <label className="block text-sm">
       <span className="text-neutral-600 dark:text-neutral-300">{label}</span>
       <div className="mt-1">{children}</div>
     </label>
-     
   );
 }
