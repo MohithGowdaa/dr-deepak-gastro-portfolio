@@ -21,12 +21,17 @@ export default function App() {
   const email = "deepakskarthika@gmail.com";
 
   // === UPDATED HOSPITAL LIST ===
-  const clinics = [
-    { name: "New Era Hospital", area: "Vashi" },
-    { name: "Tej Vedant Hospital", area: "Koparkhairane", onCall: true },
-    { name: "Nirmal Hospital", area: "Koparkhairane", onCall: true },
-    { name: "Credence Care Hospital", area: "Ghansoli" },
-  ];
+ const clinics = [
+  { name: "Minerva Care Clinic", area: "Kopar Khairane" },
+  { name: "Punjab Kesari Charitable Trust Hospital", area: "Vashi" },
+  { name: "Sai Snehadeep Hospital", area: "Vashi / Kopar Khairane" },
+  { name: "Baba Multi-Speciality Hospital", area: "Wadala" },
+  { name: "New Era Hospital", area: "Vashi" },
+   { name: "New Era Hospital", area: "Vashi" },
+  { name: "White Lotus International Hospital", area: "Kalamboli },
+  { name: "Nirmal Hospital", area: "Koparkhairane" },
+  { name: "Credence Care Hospital", area: "Ghansoli" },
+];
 
   const personal = { fullName: "Dr. Deepak Sasikumar", specialties: ["Medical Gastroenterologist"] };
 
