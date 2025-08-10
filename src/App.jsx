@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AIChatWidget from "./components/AIChatWidget";
 import {
   Phone, Mail, MapPin, GraduationCap, Award, BookOpen, Stethoscope,
   Building2, CalendarDays, Languages, Home, ShieldCheck, User, Sun, Moon, Send
@@ -444,6 +445,7 @@ function AppointmentsSection({ phone, email, clinics }) {
 
 function Field({ label, children }) {
   return (
+    <AIChatWidget />
     <label className="block text-sm">
       <span className="text-neutral-600 dark:text-neutral-300">{label}</span>
       <div className="mt-1">{children}</div>
