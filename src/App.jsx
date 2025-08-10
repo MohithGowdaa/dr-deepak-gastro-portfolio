@@ -7,19 +7,13 @@ import drImg from "./assets/dr-deepak.png";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
-// set initial value from localStorage once
-const [darkMode, setDarkMode] = useState(() => {
-  return localStorage.getItem('darkMode') === 'true';
-});
-
-// keep <html> class and localStorage in sync on every change
-useEffect(() => {
-  document.documentElement.classList.toggle('dark', darkMode);
-  localStorage.setItem('darkMode', String(darkMode));
-}, [darkMode]);
-
+  // Dark mode: init from localStorage, then sync <html> class + storage
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", String(darkMode));
+  }, [darkMode]);
 
   const phone = "+919108336267";
   const displayPhone = "+91 91083 36267";
@@ -141,7 +135,7 @@ useEffect(() => {
               <div className="mt-5 flex flex-wrap gap-3">
                 <a href={`tel:${phone}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm"><Phone className="w-4 h-4" /> Call {displayPhone}</a>
                 <a href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72.96.99-3.62-.23-.37A9.93 9.93 0 0 1 2.07 12c0-5.5 4.48-10 9.99-10s9.99 4.5 9.99 10c0 5.5-4.48 10-9.99 10Zm5.47-7.48c-.3-.15-1.78-.87-2.06-.97-.28-.1-.49-.15-.7.15-.21.3-.8.97-.98 1.17-.18.2-.36.22-.66.07-.3-.15-1.25-.45-2.38-1.45-.88-.77-1.48-1.72-1.65-2.01-.17-.3-.02-.46.13-.6.14-.14.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.7-1.68-.95-2.29-.25-.6-.5-.52-.7-.53l-.6-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.06 4.49.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.08 1.78-.73 2.03-1.44.25-.71.25-1.32.17-1.45-.08-.13-.27-.2-.57-.35Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72.96.99-3.62-.23-.37A9.93 9.93 0 0 1 2.07 12c0-5.5 4.48-10 9.99-10s9.99 4.5 9.99 10c0 5.5-4.48 10-9.99 10Zm5.47-7.48c-.3-.15-1.78-.87-2.06-.97-.28-.1-.49-.15-.7.15-.21.3-.8.97-.98 1.17-.18.2-.36.22-.66.07-.3-.15-1.25-.45-2.38-1.45-.88-.77-1.48-1.72-1.65-2.01-.17-.3-.02-.46 .13-.6.14-.14 .3-.36 .45-.54.15-.18 .2-.3 .3-.5.1-.2 .05-.37 -.03-.52-.08-.15 -.7-1.68 -.95-2.29 -.25-.6 -.5-.52 -.7-.53 l-.6-.01 c-.2 0 -.52 .07 -.79 .37 -.27 .3 -1.04 1.02 -1.04 2.5 s 1.07 2.9 1.22 3.1 c .15 .2 2.1 3.2 5.06 4.49 .71 .31 1.26 .49 1.69 .63 .71 .23 1.35 .2 1.86 .12 .57 -.08 1.78 -.73 2.03 -1.44 .25 -.71 .25 -1.32 .17 -1.45 -.08 -.13 -.27 -.2 -.57 -.35 Z"/></svg>
                   WhatsApp
                 </a>
                 <a href={`mailto:${email}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-sm"><Mail className="w-4 h-4" /> Email</a>
@@ -249,7 +243,7 @@ useEffect(() => {
             <Phone className="w-4 h-4"/> Call
           </a>
           <a href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72.96.99-3.62-.23-.37A9.93 9.93 0 0 1 2.07 12c0-5.5 4.48-10 9.99-10s9.99 4.5 9.99 10c0 5.5-4.48 10-9.99 10Zm5.47-7.48c-.3-.15-1.78-.87-2.06-.97-.28-.1-.49-.15-.7.15-.21.3-.8.97-.98 1.17-.18.2-.36.22-.66.07-.3-.15-1.25-.45-2.38-1.45-.88-.77-1.48-1.72-1.65-2.01-.17-.3-.02-.46.13-.6.14-.14.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.7-1.68-.95-2.29-.25-.6-.5-.52-.7-.53l-.6-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.06 4.49.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.08 1.78-.73 2.03-1.44.25-.71.25-1.32.17-1.45-.08-.13-.27-.2-.57-.35Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.45 0 .07 5.38.07 12c0 2.1.54 4.1 1.57 5.9L0 24l6.26-1.62A11.86 11.86 0 0 0 12.06 24c6.61 0 11.98-5.38 11.98-12 0-3.2-1.25-6.21-3.52-8.52ZM12.06 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.72 .96 .99-3.62 -.23 -.37 A9.93 9.93 0 0 1 2.07 12 c0 -5.5 4.48 -10 9.99 -10 s 9.99 4.5 9.99 10 c0 5.5 -4.48 10 -9.99 10 Zm5.47 -7.48 c -.3 -.15 -1.78 -.87 -2.06 -.97 -.28 -.1 -.49 -.15 -.7 .15 -.21 .3 -.8 .97 -.98 1.17 -.18 .2 -.36 .22 -.66 .07 -.3 -.15 -1.25 -.45 -2.38 -1.45 -.88 -.77 -1.48 -1.72 -1.65 -2.01 -.17 -.3 -.02 -.46 .13 -.6 .14 -.14 .3 -.36 .45 -.54 .15 -.18 .2 -.3 .3 -.5 .1 -.2 .05 -.37 -.03 -.52 -.08 -.15 -.7 -1.68 -.95 -2.29 -.25 -.6 -.5 -.52 -.7 -.53 l -.6 -.01 c -.2 0 -.52 .07 -.79 .37 -.27 .3 -1.04 1.02 -1.04 2.5 s 1.07 2.9 1.22 3.1 c .15 .2 2.1 3.2 5.06 4.49 .71 .31 1.26 .49 1.69 .63 .71 .23 1.35 .2 1.86 .12 .57 -.08 1.78 -.73 2.03 -1.44 .25 -.71 .25 -1.32 .17 -1.45 -.08 -.13 -.27 -.2 -.57 -.35 Z"/></svg>
             WhatsApp
           </a>
           <a href={`mailto:${email}`} className="flex items-center justify-center gap-2 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700">
@@ -297,6 +291,85 @@ function AppointmentsSection({ phone, email, clinics }) {
   const waHref = `https://wa.me/${phone.replace("+","")}?text=${text}`;
   const mailHref = `mailto:${email}?subject=${encodeURIComponent("Appointment request: " + (form.name || ""))}&body=${text.replace(/%0A/g, "\n")}`;
 
+  // ---------- Add-to-Calendar helpers ----------
+  const toICSDate = (d) =>
+    `${d.getUTCFullYear()}${String(d.getUTCMonth()+1).padStart(2,'0')}${String(d.getUTCDate()).padStart(2,'0')}T${String(d.getUTCHours()).padStart(2,'0')}${String(d.getUTCMinutes()).padStart(2,'0')}00Z`;
+
+  // Build .ics for 30 minutes
+  function buildICS({ title, description, location, startLocalISO }) {
+    const start = new Date(startLocalISO);
+    const end = new Date(start.getTime() + 30 * 60 * 1000);
+    const dtstamp = new Date();
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//DrDeepak//Appointments//EN",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      `UID:${Date.now()}@drdeepak`,
+      `DTSTAMP:${toICSDate(dtstamp)}`,
+      `DTSTART:${toICSDate(start)}`,
+      `DTEND:${toICSDate(end)}`,
+      `SUMMARY:${title}`,
+      `DESCRIPTION:${description.replace(/\n/g,"\\n")}`,
+      `LOCATION:${location}`,
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+    return ics;
+  }
+
+  function downloadICS(filename, text) {
+    const blob = new Blob([text], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function buildGoogleCalendarURL({ title, details, location, startLocalISO }) {
+    const start = new Date(startLocalISO);
+    const end = new Date(start.getTime() + 30 * 60 * 1000);
+    const fmt = (d) =>
+      `${d.getUTCFullYear()}${String(d.getUTCMonth()+1).padStart(2,'0')}${String(d.getUTCDate()).padStart(2,'0')}T${String(d.getUTCHours()).padStart(2,'0')}${String(d.getUTCMinutes()).padStart(2,'0')}00Z`;
+
+    const params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: title,
+      dates: `${fmt(start)}/${fmt(end)}`,
+      details,
+      location,
+    });
+    return `https://www.google.com/calendar/render?${params.toString()}`;
+  }
+  // --------------------------------------------
+
+  // Compute start datetime ISO if user selected date+time
+  const startLocalISO = (form.date && form.time)
+    ? new Date(`${form.date}T${form.time}:00`).toISOString()
+    : null;
+
+  const eventTitle = `Appointment with Dr. Deepak Sasikumar`;
+  const eventLocation = form.clinic || "Clinic";
+  const eventDetails =
+    `Name: ${form.name || "-"}\nPhone: ${form.phone || "-"}\nClinic: ${form.clinic || "-"}\nConcern: ${form.concern || "-"}`;
+
+  function handleICS() {
+    if (!startLocalISO) return; // need date+time
+    const ics = buildICS({
+      title: eventTitle,
+      description: eventDetails,
+      location: eventLocation,
+      startLocalISO
+    });
+    downloadICS("appointment.ics", ics);
+  }
+
   return (
     <Section id="appointments" title="Book an Appointment" icon={<CalendarDays className="w-5 h-5" />}>
       <div className="grid md:grid-cols-2 gap-6">
@@ -323,14 +396,36 @@ function AppointmentsSection({ phone, email, clinics }) {
           <Field label="Concern (optional)">
             <textarea value={form.concern} onChange={e=>setForm(f=>({...f, concern:e.target.value}))} rows={3} placeholder="e.g., abdominal pain, acidity..." className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-transparent outline-none" />
           </Field>
-          <div className="flex gap-3 pt-1">
+
+          <div className="flex flex-wrap gap-3 pt-1">
             <a href={waHref} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${disabled ? "opacity-50 pointer-events-none" : ""} border-neutral-300 dark:border-neutral-700`}>
               <Send className="w-4 h-4" /> WhatsApp
             </a>
             <a href={mailHref} className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${disabled ? "opacity-50 pointer-events-none" : ""} border-neutral-300 dark:border-neutral-700`}>
               <Mail className="w-4 h-4" /> Email
             </a>
+
+            {/* Add to Calendar (.ics) */}
+            <button type="button" onClick={handleICS}
+              disabled={!startLocalISO}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${!startLocalISO ? "opacity-50 pointer-events-none" : ""} border-neutral-300 dark:border-neutral-700`}>
+              📅 Add to Calendar (.ics)
+            </button>
+
+            {/* Google Calendar */}
+            <a
+              href={startLocalISO ? buildGoogleCalendarURL({
+                title: eventTitle,
+                details: eventDetails,
+                location: eventLocation,
+                startLocalISO
+              }) : undefined}
+              target="_blank" rel="noreferrer"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${!startLocalISO ? "opacity-50 pointer-events-none" : ""} border-neutral-300 dark:border-neutral-700`}>
+              🗓️ Google Calendar
+            </a>
           </div>
+
           <p className="text-xs text-neutral-500">We’ll confirm the slot over WhatsApp or email.</p>
         </form>
 
