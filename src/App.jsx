@@ -9,16 +9,17 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("darkMode") === "true";
-    setDarkMode(saved);
-  }, []);
+// set initial value from localStorage once
+const [darkMode, setDarkMode] = useState(() => {
+  return localStorage.getItem('darkMode') === 'true';
+});
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) root.classList.add("dark"); else root.classList.remove("dark");
-    localStorage.setItem("darkMode", String(darkMode));
-  }, [darkMode]);
+// keep <html> class and localStorage in sync on every change
+useEffect(() => {
+  document.documentElement.classList.toggle('dark', darkMode);
+  localStorage.setItem('darkMode', String(darkMode));
+}, [darkMode]);
+
 
   const phone = "+919108336267";
   const displayPhone = "+91 91083 36267";
